@@ -9,5 +9,7 @@
 
     <h2> {{ $post->title }} </h2>
 
-    <h2> {{ $post->body }} </h2>
+    <p> {{ $post->body }} </p>
+
+    <p>Published {{ $post->published}}</p>
 @stop

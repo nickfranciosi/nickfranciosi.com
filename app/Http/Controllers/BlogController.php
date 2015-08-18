@@ -18,7 +18,7 @@ class BlogController extends Controller
     public function index()
     {
 
-        $posts = Post::all();
+        $posts = Post::published()->get();
 
         return view('blog.index')->with(compact('posts'));
     }

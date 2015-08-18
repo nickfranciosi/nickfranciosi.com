@@ -11,4 +11,9 @@ class Post extends Model
         'body',
         'published'
     ];
+
+    public function scopePublished($query)
+    {
+        return $query->where('published', true);
+    }
 }
