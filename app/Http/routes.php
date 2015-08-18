@@ -15,6 +15,4 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/blog', function(){
-    return App\Post::all();
-});
+Route::resource('/blog', 'BlogController');

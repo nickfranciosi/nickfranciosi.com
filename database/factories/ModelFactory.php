@@ -23,7 +23,7 @@ $factory->define(App\User::class, function ($faker) {
 
 $factory->define(App\Post::class, function ($faker) {
     return [
-        'title' => $faker->sentence,
+        'title' => $faker->realText($maxNbChars = 50, $indexSize = 2),
         'body' => $faker->text,
         'published' => $faker->boolean($chanceOfGettingTrue = 75)
     ];
