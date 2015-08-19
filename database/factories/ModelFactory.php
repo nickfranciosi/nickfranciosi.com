@@ -28,3 +28,10 @@ $factory->define(App\Post::class, function ($faker) {
         'published' => $faker->boolean($chanceOfGettingTrue = 75)
     ];
 });
+
+
+$factory->define(App\Tag::class, function ($faker) {
+    return [
+        'name' => $faker->word(),
+    ];
+});

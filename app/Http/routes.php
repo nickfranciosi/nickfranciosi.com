@@ -15,4 +15,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::resource('/blog', 'BlogController');
+Route::resource('blog', 'BlogController');
+
+
+Route::get('tags', function(){
+    return App\Tag::all();
+});
+

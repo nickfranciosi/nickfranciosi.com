@@ -12,6 +12,12 @@ class Post extends Model
         'published'
     ];
 
+
+    public function tags()
+    {
+        return $this->belongsToMany('App\Tag');
+    }
+
     public function scopePublished($query)
     {
         return $query->where('published', true);
