@@ -81,7 +81,9 @@ class BlogController extends Controller
      */
     public function update(Request $request, $id)
     {
-        return "this is where we update";
+        Post::findOrFail($id)->update($request->all());
+
+        return redirect('/blog');
     }
 
     /**
@@ -92,6 +94,6 @@ class BlogController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Post::destroy($id);
     }
 }
