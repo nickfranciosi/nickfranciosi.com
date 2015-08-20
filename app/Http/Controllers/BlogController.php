@@ -19,7 +19,7 @@ class BlogController extends Controller
      */
     public function index()
     {
-        $posts = Post::published()->orderBy('created_at', 'desc')->get();
+        $posts = Post::published()->latest('created_at')->get();
 
         return view('blog.index')->with(compact('posts'));
     }
@@ -37,7 +37,7 @@ class BlogController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  Request  $request
+     * @param  StoreBlogPostRequest  $request
      * @return Response
      */
     public function store(StoreBlogPostRequest $request)
@@ -95,5 +95,8 @@ class BlogController extends Controller
     public function destroy($id)
     {
         Post::destroy($id);
+
+        return redirect('/blog');
+
     }
 }

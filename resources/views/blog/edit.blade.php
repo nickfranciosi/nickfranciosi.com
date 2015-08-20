@@ -13,5 +13,8 @@
        
     {!! Form::close() !!}
 
+    {!! Form::open(array('route' => array('blog.destroy', $post->id), 'method' => 'delete')) !!}
+        <button type="submit" class="btn btn-danger btn-mini">Delete</button>
+    {!! Form::close() !!}
 
 @stop
