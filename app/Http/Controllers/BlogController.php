@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+
 use App\Http\Requests;
+use App\Http\Requests\StoreBlogPostRequest;
 use App\Http\Controllers\Controller;
 use App\Post;
 
@@ -17,8 +19,7 @@ class BlogController extends Controller
      */
     public function index()
     {
-
-        $posts = Post::published()->get();
+        $posts = Post::published()->orderBy('created_at', 'desc')->get();
 
         return view('blog.index')->with(compact('posts'));
     }
@@ -30,7 +31,7 @@ class BlogController extends Controller
      */
     public function create()
     {
-        //
+        return view('blog.create');
     }
 
     /**
@@ -39,9 +40,11 @@ class BlogController extends Controller
      * @param  Request  $request
      * @return Response
      */
-    public function store(Request $request)
+    public function store(StoreBlogPostRequest $request)
     {
-        //
+        Post::create($request->all());
+
+        return redirect('/blog');
     }
 
     /**
@@ -65,7 +68,8 @@ class BlogController extends Controller
      */
     public function edit($id)
     {
-        //
+        $post = Post::findOrFail($id);
+        return view('blog.edit')->with(compact('post'));;
     }
 
     /**
@@ -77,7 +81,7 @@ class BlogController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        return "this is where we update";
     }
 
     /**
