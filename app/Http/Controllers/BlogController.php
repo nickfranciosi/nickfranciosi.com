@@ -54,9 +54,9 @@ class BlogController extends Controller
      * @param  int  $id
      * @return Response
      */
-    public function show($id)
+    public function show($slug)
     {
-        $post = Post::findOrFail($id);
+        $post = Post::whereSlug($slug)->firstOrFail();
 
         return view('blog.single')->with(compact('post'));
     }

@@ -15,6 +15,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+
+Route::get('blog/{slug}', 'BlogController@show');
 Route::resource('blog', 'BlogController');
 
 
