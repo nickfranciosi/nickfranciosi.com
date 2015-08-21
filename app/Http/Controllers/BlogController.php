@@ -9,6 +9,7 @@ use App\Http\Requests;
 use App\Http\Requests\StoreBlogPostRequest;
 use App\Http\Controllers\Controller;
 use App\Post;
+use App\Tag;
 
 class BlogController extends Controller
 {
@@ -69,7 +70,8 @@ class BlogController extends Controller
     public function edit($id)
     {
         $post = Post::findOrFail($id);
-        return view('blog.edit')->with(compact('post'));;
+        $tags = Tag::all();
+        return view('blog.edit')->with(compact('post', 'tags'));;
     }
 
     /**
