@@ -22,7 +22,6 @@
     {!! Form::select('tag_list[]', $alltags, null, ['multiple']) !!}
 </div>
 
-{{$post->tags->lists('id')}}
 <div class="form-group">
     {!! Form::submit('Publish') !!}
 </div>
