@@ -1,11 +1,11 @@
 
 <div class="form-group">
     {!! Form::label('title', 'title') !!}
-    {!! Form::text('title') !!}
+    {!! Form::text('title', null, ['class' => 'form-control']) !!}
 </div>
 
 <div class="form-group">
-    {!! Form::textarea('body') !!}
+    {!! Form::textarea('body', null, ['class' => 'form-control']) !!}
 </div>
 
 <div class="form-group">
@@ -18,8 +18,8 @@
     {!! Form::checkbox('published') !!}
 </div>
 
-<div>
-    {!! Form::select('tag_list[]', $alltags, null, ['multiple']) !!}
+<div class="form-group">
+    {!! Form::select('tag_list[]', $alltags, null, ['id' => 'tag_list','multiple', 'class' => 'form-control']) !!}
 </div>
 
 <div class="form-group">
@@ -27,3 +27,13 @@
 </div>
 
 @include('partials.forms.errors')
+
+@section('scripts')
+    <script type="text/javascript">
+        $('#tag_list').select2({
+            placeholder: "Select a tag",
+            tags: true,
+            tokenSeparators: [',', ' ', '\n', '\t']
+        });
+    </script>
+@stop

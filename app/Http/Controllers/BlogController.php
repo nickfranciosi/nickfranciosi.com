@@ -89,11 +89,10 @@ class BlogController extends Controller
 
         $post->update($request->all());
 
-        if($request->input('tag_list')){
-            $post->tags()->sync($request->input('tag_list'));
-        }else{
-            $post->tags()->detach();
-        }
+        $tags = $request->input('tag_list')? $request->input('tag_list') : [];
+
+        $post->tags()->sync($this->syncUpTags($tags));
+    
 
         return redirect('/blog');
     }
@@ -110,5 +109,18 @@ class BlogController extends Controller
 
         return redirect('/blog');
 
+    }
+
+    private function syncUpTags($tags)
+    {
+        $currentTags = array_filter($tags, 'is_numeric');
+        $newTags = array_diff($tags, $currentTags);
+
+        foreach ($newTags as $newTag) {
+            if( $tag = Tag::create(['name' => $newTag]))
+                $currentTags[] = $tag->id;
+        }
+
+        return $currentTags;
     }
 }

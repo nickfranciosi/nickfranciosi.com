@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Nick Franciosi | Web Development | Nashville, TN</title>
-    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/all.css">
 </head>
 <body>
     
@@ -12,6 +12,7 @@
     </div>
 
 
+    <script src="/js/all.js"></script>
     @yield('scripts')
 </body>
 </html>

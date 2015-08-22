@@ -1,0 +1,14 @@
+{
+  "name": "nickfranciosi.com",
+  "version": "0.0.0",
+  "homepage": "https://github.com/nickfranciosi/nickfranciosi.com",
+  "authors": [
+    "Nick Franciosi <nickfranciosi@gmail.com>"
+  ],
+  "description": "My Website",
+  "license": "MIT",
+  "dependencies": {
+    "select2": "~4.0.0",
+    "jquery": "~2.1.4"
+  }
+}
