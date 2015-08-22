@@ -19,6 +19,12 @@ class Post extends Model
         return $this->belongsToMany('App\Tag');
     }
 
+    public function getTagListAttribute()
+    {
+        return $this->tags->lists('id')->toArray();
+
+    }
+
     public function scopePublished($query)
     {
         return $query->where('published', true);

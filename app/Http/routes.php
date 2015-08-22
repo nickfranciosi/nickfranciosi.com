@@ -16,11 +16,6 @@ Route::get('/', function () {
 });
 
 
-Route::get('blog/{slug}', 'BlogController@show');
 Route::resource('blog', 'BlogController');
 
-
-Route::get('tags', function(){
-    return App\Tag::all();
-});
 

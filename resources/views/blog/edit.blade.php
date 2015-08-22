@@ -6,11 +6,6 @@
 
     <h2>Edit a Blog Post</h2>
 
-    @foreach ($tags as $tag)
-      
-      <p>{{ $tag->name }}</p>  
-    @endforeach
-
 
     {!! Form::model($post, array('method' => 'put','route' => array('blog.update', $post->id))) !!}
 

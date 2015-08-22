@@ -20,7 +20,7 @@ class BlogController extends Controller
      */
     public function index()
     {
-        $posts = Post::published()->latest('created_at')->get();
+        $posts = Post::with('tags')->published()->latest('created_at')->get();
 
         return view('blog.index')->with(compact('posts'));
     }
@@ -56,7 +56,8 @@ class BlogController extends Controller
      */
     public function show($slug)
     {
-        $post = Post::whereSlug($slug)->firstOrFail();
+        $post = Post::with('tags')->whereSlug($slug)->firstOrFail();
+
 
         return view('blog.single')->with(compact('post'));
     }
@@ -69,9 +70,10 @@ class BlogController extends Controller
      */
     public function edit($id)
     {
-        $post = Post::findOrFail($id);
-        $tags = Tag::all();
-        return view('blog.edit')->with(compact('post', 'tags'));;
+        $post = Post::with('tags')->findOrFail($id);
+        $alltags = Tag::lists('name', 'id');
+
+        return view('blog.edit')->with(compact('post', 'alltags'));
     }
 
     /**
@@ -83,7 +85,15 @@ class BlogController extends Controller
      */
     public function update(Request $request, $id)
     {
-        Post::findOrFail($id)->update($request->all());
+        $post = Post::findOrFail($id);
+
+        $post->update($request->all());
+
+        if($request->input('tag_list')){
+            $post->tags()->sync($request->input('tag_list'));
+        }else{
+            $post->tags()->detach();
+        }
 
         return redirect('/blog');
     }

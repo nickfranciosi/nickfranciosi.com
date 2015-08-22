@@ -1,3 +1,4 @@
+
 <div class="form-group">
     {!! Form::label('title', 'title') !!}
     {!! Form::text('title') !!}
@@ -17,6 +18,11 @@
     {!! Form::checkbox('published') !!}
 </div>
 
+<div>
+    {!! Form::select('tag_list[]', $alltags, null, ['multiple']) !!}
+</div>
+
+{{$post->tags->lists('id')}}
 <div class="form-group">
     {!! Form::submit('Publish') !!}
 </div>
