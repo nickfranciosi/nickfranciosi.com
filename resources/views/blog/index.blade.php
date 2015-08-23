@@ -12,4 +12,7 @@
             <h3>{{ $post->title }}</h3>
         </a>
     @endforeach
+
+
+    @include('partials.taglist')
 @stop

@@ -12,10 +12,11 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('pages.home');
 });
 
 
 Route::resource('blog', 'BlogController');
 
 
+Route::get('blog/tag/{tag}', 'BlogController@showByTag');

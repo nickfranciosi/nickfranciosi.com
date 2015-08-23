@@ -18,9 +18,20 @@ class BlogController extends Controller
      *
      * @return Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $posts = Post::with('tags')->latest('published_at')->published()->get();
+        if($request->input('tags')){
+
+            $tag = Tag::with('posts')->whereName($request->input('tags'))->firstOrFail();
+
+            $posts = $tag->posts;
+
+        }else{
+
+            $posts = Post::with('tags')->latest('published_at')->published()->get();   
+        }
+
+        
 
         return view('blog.index')->with(compact('posts'));
     }
@@ -45,7 +56,11 @@ class BlogController extends Controller
      */
     public function store(StoreBlogPostRequest $request)
     {
-        Post::create($request->all());
+        $post = Post::create($request->all());
+
+        $tags = $request->input('tag_list')? $request->input('tag_list') : [];
+
+        $post->tags()->sync($this->syncUpTags($tags));
 
         return redirect('/blog');
     }
@@ -53,7 +68,7 @@ class BlogController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  string  $slug
      * @return Response
      */
     public function show($slug)

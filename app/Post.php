@@ -42,9 +42,9 @@ class Post extends Model
     {
         $this->attributes['title'] = $value;
 
-        if (! $this->exists) {
-          $this->attributes['slug'] = str_slug($value);
-        }
+        
+        $this->attributes['slug'] = str_slug($value);
+        
     }
 
     public function setPublishedAtAttribute($date)

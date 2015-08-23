@@ -14,4 +14,10 @@ class Tag extends Model
     {
         return $this->belongsToMany('App\Post');
     }
+
+
+    public function scopeActive($query)
+    {
+        return $query->has('posts')->get();
+    }
 }
