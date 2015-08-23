@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Carbon\Carbon;
 
 class Post extends Model
 {
@@ -10,8 +11,10 @@ class Post extends Model
         'title',
         'body',
         'slug',
-        'published'
+        'published_at'
     ];
+
+    protected $dates = ['published_at'];
 
 
     public function tags()
@@ -27,7 +30,12 @@ class Post extends Model
 
     public function scopePublished($query)
     {
-        return $query->where('published', true);
+        return $query->where('published_at', '<=' , Carbon::now());
+    }
+
+    public function scopeUnpublished($query)
+    {
+        return $query->where('published_at', '>=' , Carbon::now());
     }
 
     public function setTitleAttribute($value)
@@ -36,6 +44,16 @@ class Post extends Model
 
         if (! $this->exists) {
           $this->attributes['slug'] = str_slug($value);
+        }
     }
-  }
+
+    public function setPublishedAtAttribute($date)
+    {
+        $this->attributes['published_at'] = Carbon::parse($date);
+    }
+
+    public function getPublishedAtAttribute($value)
+    {
+        return Carbon::parse($value)->format('Y-m-d');
+    }
 }

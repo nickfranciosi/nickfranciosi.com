@@ -26,8 +26,7 @@ class StoreBlogPostRequest extends Request
     {
         return [
             'title' => 'required|unique:posts|max:255',
-            'body'  => 'required',
-            'slug'  =>  'required|unique:posts'
+            'body'  => 'required'
         ];
     }
 }

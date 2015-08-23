@@ -20,7 +20,7 @@ class BlogController extends Controller
      */
     public function index()
     {
-        $posts = Post::with('tags')->published()->latest('created_at')->get();
+        $posts = Post::with('tags')->latest('published_at')->published()->get();
 
         return view('blog.index')->with(compact('posts'));
     }
@@ -32,7 +32,9 @@ class BlogController extends Controller
      */
     public function create()
     {
-        return view('blog.create');
+        $alltags = Tag::lists('name', 'id');
+
+        return view('blog.create', compact('alltags'));
     }
 
     /**

@@ -9,13 +9,8 @@
 </div>
 
 <div class="form-group">
-
-    {{-- set a value if unpublished to update model BETTER FIX LATER--}}
-    <input type="hidden" name="published" value="0">
-    {{--  --}}
-    
-    {!! Form::label('published', 'published') !!}
-    {!! Form::checkbox('published') !!}
+    {!! Form::label('published_at', 'Publish On') !!}
+    {!! Form::input('date', 'published_at', null, ['class' => 'form-control']) !!}
 </div>
 
 <div class="form-group">
