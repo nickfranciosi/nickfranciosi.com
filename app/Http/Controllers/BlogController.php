@@ -10,6 +10,7 @@ use App\Http\Requests\StoreBlogPostRequest;
 use App\Http\Controllers\Controller;
 use App\Post;
 use App\Tag;
+use \cebe\markdown\Markdown;
 
 class BlogController extends Controller
 {
@@ -20,6 +21,13 @@ class BlogController extends Controller
      */
     public function index(Request $request)
     {
+
+
+        $converter = new Markdown();
+
+        $value = $converter->parse('#Test');
+
+        return $value;
         if($request->input('tags')){
 
             $tag = Tag::with('posts')->whereName($request->input('tags'))->firstOrFail();
