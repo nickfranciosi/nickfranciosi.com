@@ -15,8 +15,8 @@ Route::get('/', function () {
     return view('pages.home');
 });
 
-
+Route::get('blog/tag/{tag}', 'BlogController@showByTag');
+Route::get('blog/drafts', 'BlogController@drafts');
 Route::resource('blog', 'BlogController');
 
 
-Route::get('blog/tag/{tag}', 'BlogController@showByTag');
