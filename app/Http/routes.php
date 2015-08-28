@@ -1,13 +1,20 @@
 <?php
 
-Route::get('/', function () {
+get('/', function () {
     return view('pages.home');
 });
 
-Route::get('blog/tag/{tag}', 'BlogController@showByTag');
-Route::get('blog/drafts', 'BlogController@drafts');
-Route::get('resume','PagesController@showResume');
-Route::get('portfolio','PagesController@showPortfolio');
-Route::resource('blog', 'BlogController');
 
+get('resume','PagesController@showResume');
+get('portfolio','PagesController@showPortfolio');
+
+get('blog', 'BlogController@index');
+get('blog/{slug}', 'BlogController@show');
+
+resource('admin/post','PostController');
+
+
+get('/auth/login', 'Auth\AuthController@getLogin');
+post('/auth/login', 'Auth\AuthController@postLogin');
+get('/auth/logout', 'Auth\AuthController@getLogout');
 

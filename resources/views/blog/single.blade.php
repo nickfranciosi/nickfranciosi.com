@@ -14,7 +14,7 @@
     <p>Published {{ $post->published}}</p>
 
     <div class="admin-buttons">
-        <a class="btn" href="/blog/{{$post->id}}/edit">Edit</a>
+        <a class="btn" href="/admin/post/{{$post->id}}/edit">Edit</a>
     </div>
 
     <div id="disqus_thread"></div>

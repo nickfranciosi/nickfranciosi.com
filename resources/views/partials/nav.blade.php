@@ -16,8 +16,12 @@
       <ul class="nav navbar-nav">
         <li><a href="/resume">Portfolio</a></li>
         <li class="active"><a href="/blog">Blog <span class="sr-only">(current)</span></a></li>
-        <li><a href="/blog/create">Create</a></li>
         <li><a href="/resume">Resume</a></li>
+
+        @if(Auth::check())
+          <li><a href="/admin/post">Admin</a></li>
+          <li><a href="/admin/post/create">Create</a></li>
+        @endif
       </ul>
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
